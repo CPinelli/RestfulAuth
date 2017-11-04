@@ -8,6 +8,7 @@ import com.mycompany.security.restfulauth.services.MyUserDetailsService;
 import com.mycompany.security.restfulauth.services.MyUserService;
 import com.mycompany.security.restfulauth.utils.HashUtils;
 import com.mycompany.security.restfulauth.utils.SecurityUtils;
+import com.mycompany.security.restfulauth.utils.UriUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -109,7 +110,7 @@ public class UserControllerTest {
                 new User(USERNAME, hash, Collections.emptyList()));
 
         MvcResult mvcResult = this.mvc.perform(
-                post("/login")
+                post(UriUtils.LOGIN_URI)
                         .content(json))
                 .andExpect(status().isOk()).andReturn();
 

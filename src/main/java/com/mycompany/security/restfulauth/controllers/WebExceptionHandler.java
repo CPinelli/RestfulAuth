@@ -41,12 +41,12 @@ public class WebExceptionHandler {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IOException.class)
     public Map<String, String> handleIO(Exception e) {
 
         Map<String, String> response = new HashMap<>();
-        response.put("code", "401");
+        response.put("code", "400");
         response.put("message", e.getMessage());
 
         return response;

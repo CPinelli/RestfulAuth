@@ -8,6 +8,7 @@ import com.mycompany.security.restfulauth.exceptions.UnauthorizedException;
 import com.mycompany.security.restfulauth.services.MyUserService;
 import com.mycompany.security.restfulauth.utils.JwtUtils;
 import com.mycompany.security.restfulauth.utils.SecurityUtils;
+import com.mycompany.security.restfulauth.utils.UriUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ public class UserController {
         this.myUserService = myUserService;
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = UriUtils.SIGN_UP_URI, method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public MyUserResponseDto createUser(@RequestBody MyUserRequestDto myUserRequestDto) throws AlreadyExistsException {
 
         MyUser myUser = this.myUserService.create(myUserRequestDto);
@@ -48,7 +49,7 @@ public class UserController {
 
         String username = JwtUtils.getUsername(header);
 
-        // this should never happen
+        // this should never happen unless the user modify the header, that's why you need to check it
         if (StringUtils.isEmpty(username)) {
             LOGGER.error("An anonymous user requested to get all users");
             throw new UnauthorizedException("You must be logged in");

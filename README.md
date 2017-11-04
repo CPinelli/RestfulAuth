@@ -2,9 +2,9 @@
 
 My way to authenticate users using Spring Security
 
-# How do I make it work?
+# How do I run it?
 
-To make it work without any change, you need to have a MySQL database.<br>
+To run it without any changes, you need to have a MySQL database.<br>
 Then you can modify the spring config file (application.yml) to use your own DB.<br>
 You can custom the User entity for your own need, the application will create the table.
 
